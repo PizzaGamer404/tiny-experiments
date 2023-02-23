@@ -22,11 +22,12 @@ javascript: (function() { /*If you paste this into a bookmark's link, it will ru
     };
     setInterval(function() { /*runs ~100 times per second*/
         elements = document.body.getElementsByTagName("*"); /*gets all elements on the page*/
-        if (Math.random() > 0.99 - count / 3000 * 0.99) count++; /*small chance to increase the count, chance increases as count increases*/
+        /*small chance to increase the count, chance increases as count increases*/
+        /*with count of 0, it is 1%, with count of 3000, it is 100%, linearly increasing*/
+        /*this makes it go faster and faster*/
+        if (Math.random() > 0.99 - count / 3000 * 0.99) count++;
         for (var i = 1; i <= count / 100; i++) { /*for 1/100 of the count, run chaos()*/
             chaos();
         }
-        /* random chance to based on the remainder when dividing count by 100*/
-        if (Math.random() * 100 < count % 100) { chaos(); }
     }, 10);
 })();
